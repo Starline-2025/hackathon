@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, PrimaryKeyConstraint, Integer
+from sqlalchemy import Column, String, Boolean, Integer, text
 from sqlalchemy.ext.declarative import declarative_base
 
 Base = declarative_base()
@@ -14,4 +14,5 @@ class CardNKOORM(Base):
     city = Column(String, nullable=False)
     img = Column(String, nullable=True)
     website = Column(String, nullable=False)
+    is_verificate = Column(Boolean, nullable=False, default=False, server_default=text("false"))
 

@@ -8,7 +8,7 @@ from ..infra.models.model import CardNKOORM
 class CardRepoImpl(CardRepo):
 	def get_cards(self, name : str | None, category: str | None, city: str | None) -> List[Card]:
 		with get_session() as session:
-			query = session.query(CardNKOORM)
+			query = session.query(CardNKOORM).filter(CardNKOORM.is_verificate)
 			if name:
 				query = query.filter(CardNKOORM.name == name)
 			if category:
