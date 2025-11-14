@@ -1,14 +1,15 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class Card:
 	name: str
 	category: str
 	description: str
-	contacts: str
 	city: str
-	img: str
 	website: str
+	contacts: str | None = None
+	img: str | None = None
 	
 	@classmethod
 	def from_orm(cls, card_orm):
