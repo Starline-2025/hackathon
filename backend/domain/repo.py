@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 
-from backend.domain.entity import Card
+from ..domain.entity import Card
 
 
 class CardRepo(ABC):
