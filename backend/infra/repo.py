@@ -1,5 +1,5 @@
-from backend.domain.entity import Card
-from backend.domain.repo import CardRepo
+from ..domain.entity import Card
+from ..domain.repo import CardRepo
 
 
 class CardRepoImpl(CardRepo):
