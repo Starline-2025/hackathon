@@ -6,7 +6,7 @@ WORKDIR /usr/share/nginx/html
 
 # Копируем локальные статические файлы в контейнер
 # Например, index.html, CSS, JS и т.д.
-COPY ./build .
+COPY ./dist .
 
 # Копируем свой конфиг nginx (если есть)
 COPY ./nginx.conf /etc/nginx/nginx.conf
