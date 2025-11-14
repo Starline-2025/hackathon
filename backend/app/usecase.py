@@ -6,5 +6,6 @@ class CardNKOService(ABC):
 	@abstractmethod
 	def get_card_by_filter(self, name : str | None, category: str | None, city: str | None) -> List[Card]:
 		...
+	@abstractmethod
 	def create_card(self, card: Card) -> Card:
 		...
