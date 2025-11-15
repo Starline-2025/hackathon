@@ -1,11 +1,36 @@
-"""
-Здесь слой handler и объявляется router от FastApi
+from fastapi import APIRouter, Depends
+from typing import List
 
-Также надо использовать модели Response и Request из папки models в каждом handlers
+from .exceptions.error import Error
+from ..app.usecase import CardNKOService
+from ..infra.di.di import get_card_service, get_error
+from models.model import Card
 
-Вызывать для работы надо класс CardNKOService из файла app/usecase
+router = APIRouter(tags=["cards"])
 
-Также надо использовать Depends(infra/di функция get_card_service) для вызова сервиса CardNKOService
+@router.get("/cards", response_model=List[Card])
+def get_cards_by_filter(
+	name: str | None = None,
+	city: str | None = None,
+	category: str | None = None,
+	cards_service: CardNKOService = Depends(get_card_service),
+	error: Error = Depends(get_error),
+):
+	try:
+		cards = cards_service.get_cards_by_filter(name=name, city=city, category=category)
+		return cards
+	except Exception as e:
+		return error.handle(e)
 
-Сделать надо один handler для приема POST и второй для GET по пути /api/cards
-"""
+@router.post("/cards", response_model=Card)
+def create_card(
+	req: Card,
+	cards_service: CardNKOService = Depends(get_card_service),
+	error: Error = Depends(get_error),
+):
+	try:
+		created = cards_service.create_card(req)
+		return created
+	except Exception as e:
+		return error.handle(e)
+
