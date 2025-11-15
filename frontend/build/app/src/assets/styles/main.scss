@@ -1,0 +1,31 @@
+@import './base/reset.css';
+@import './base/fonts.scss';
+@import 'colors.scss';
+
+body {
+  background: linear-gradient(100deg, $rosatom-lightest 0%, #e6f0ff 30%, $white 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1230px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.btn {
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

@@ -1,0 +1,134 @@
+@use '../colors' as *;
+
+.map-wrapper {
+  width: 100%;
+  height: 700px;
+  margin-bottom: 100px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  border: 3px solid $rosatom-light;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+.rosatom-balloon {
+  background: $white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 50, 116, 0.15);
+  border: 1px solid $rosatom-light;
+  width: 300px;
+  overflow: hidden;
+
+  .balloon-header {
+    background: $rosatom-dark;
+    color: $white;
+    padding: 14px 18px;
+    border-radius: 8px 8px 0 0;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    .org-name {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.3;
+      padding-right: 30px;
+    }
+
+    .org-category {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 10px;
+      border-radius: 14px;
+      font-size: 12px;
+      font-weight: 500;
+      max-width: fit-content;
+    }
+
+    .balloon-close-button {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 26px;
+      height: 26px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      color: $white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.3);
+      }
+    }
+  }
+
+  .balloon-content {
+    padding: 16px;
+
+    .org-description {
+      margin: 0 0 12px 0;
+      color: $text-dark;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .org-contacts {
+      color: $gray;
+      font-size: 13px;
+      line-height: 1.45;
+
+      strong {
+        color: $text-dark;
+        font-weight: 500;
+      }
+    }
+
+    .org-image {
+      width: 100%;
+      max-width: 150px;
+      border-radius: 6px;
+      margin-top: 10px;
+      border: 1px solid $gray-light;
+    }
+  }
+
+  .balloon-footer {
+    padding: 14px 16px;
+    border-top: 1px solid $gray-light;
+    background: $rosatom-lightest;
+    border-radius: 0 0 8px 8px;
+
+    .website-link {
+      color: $rosatom-blue;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s;
+
+      &:hover {
+        color: $rosatom-dark;
+        text-decoration: underline;
+      }
+
+      &::before {
+        content: '🌐';
+        margin-right: 6px;
+      }
+    }
+  }
+}

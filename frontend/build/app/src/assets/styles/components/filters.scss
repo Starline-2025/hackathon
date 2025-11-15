@@ -1,0 +1,94 @@
+@use '../colors' as *;
+
+.filters {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding: 24px;
+  background: $white;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 50, 116, 0.12);
+
+  .search-bar {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+
+    input {
+      flex: 1;
+      padding: 12px 16px;
+      border: 1px solid $rosatom-light;
+      border-radius: 8px;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+
+      &:focus {
+        border-color: $rosatom-blue;
+      }
+    }
+
+    button {
+      padding: 12px 20px;
+      background: $rosatom-blue;
+      color: $white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+      &:hover {
+        background: darken($rosatom-blue, 5%);
+      }
+    }
+  }
+
+  .filter-sections {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .filter-group {
+    flex: 1;
+    min-width: 200px;
+
+    h3 {
+      font-size: 1rem;
+      color: $rosatom-dark;
+      margin-bottom: 12px;
+    }
+  }
+
+  .filter-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .filter-option {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: $rosatom-lightest;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+    input {
+      display: none;
+    }
+
+    label {
+      cursor: pointer;
+    }
+
+    &.active,
+    &:hover {
+      background: $rosatom-blue;
+      color: $white;
+    }
+  }
+}

@@ -1,0 +1,120 @@
+@use '../colors' as *;
+
+.header {
+  width: 100%;
+  background: linear-gradient(135deg, $rosatom-dark, $rosatom-blue);
+  color: $white;
+  box-shadow: 0 4px 12px rgba(0, 50, 116, 0.2);
+}
+
+.header-inner {
+  padding: 35px 25px;
+  margin: 0 auto;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-block {
+  position: absolute;
+  left: 25px;
+
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  .logo {
+    max-width: 140px;
+    height: auto;
+    display: block;
+  }
+
+  .logo-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0 0.5rem;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h3 {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 13px;
+      font-weight: 400;
+      max-width: 280px;
+    }
+  }
+}
+
+.nav {
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 7px;
+  backdrop-filter: blur(10px);
+}
+
+.menu-list {
+  display: flex;
+  align-content: center;
+
+  gap: 20px;
+
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    padding: 7px 12px;
+    border-radius: 6px;
+
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1.4;
+
+    transition: all 0.2s ease-in-out;
+
+    img {
+      height: 16px;
+      width: 16px;
+    }
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    &.active {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.btn-primary {
+  position: absolute;
+  right: 25px;
+
+  background: linear-gradient(135deg, $rosatom-light, #a0d8ff);
+  color: $rosatom-dark;
+  padding: 15px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(108, 172, 228, 0.3);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(108, 172, 228, 0.4);
+  }
+}

@@ -1,0 +1,116 @@
+@use '../colors' as *;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  background: $white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 50, 116, 0.12);
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 50, 116, 0.16);
+  }
+}
+
+.card__header {
+  display: flex;
+  gap: 16px;
+  padding: 24px 24px 16px;
+  border-bottom: 1px solid $rosatom-lightest;
+}
+
+.card__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: $rosatom-lightest;
+  color: $rosatom-dark;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card__title {
+  font-size: 22px;
+  color: $rosatom-dark;
+  margin: 0 0 4px;
+}
+
+.card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 15px;
+  color: $gray;
+}
+
+.card__location,
+.card__category {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card__description {
+  flex: 1;
+  padding: 20px 24px;
+  color: $text-dark;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 24px;
+}
+
+.card__actions {
+  display: flex;
+  gap: 12px;
+  padding: 20px 24px;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $rosatom-lightest;
+  color: $rosatom-blue;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.btn-secondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid darken($gray-light, 5%);
+
+  &:hover {
+    background: darken($gray-light, 5%);
+  }
+}
