@@ -1,0 +1,28 @@
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI
+from api.handler import router
+import uvicorn
+from fastapi.middleware.cors import CORSMiddleware
+from logger import status_logger
+
+import os
+@asynccontextmanager
+async def app_logger(application):
+	status_logger.info("Starting my new application")
+	yield
+	status_logger.info("Shutting down application")
+
+
+app = FastAPI(lifespan=app_logger)#docs_url=None, redoc_url=None
+app.add_middleware(
+	CORSMiddleware,# type: ignore
+	allow_origins=["http://127.0.0.1:8000","https:"],
+	allow_credentials=True,
+	allow_methods=["GET", "POST"],  # Разрешаем все методы HTTP (GET, POST, PUT, DELETE и т.д.)
+	allow_headers=["Content-Type"],  # Разрешаем все заголовки
+)
+app.include_router(router, prefix="/api")
+
+if __name__ == "__main__":
+	uvicorn.run(app, host="127.0.0.1", port=8000)
