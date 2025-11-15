@@ -8,6 +8,9 @@ class Card:
 	description: str
 	city: str
 	website: str
+	lat: float
+	lng: float
+	address: str | None = None
 	contacts: str | None = None
 	img: str | None = None
 	
@@ -21,4 +24,7 @@ class Card:
 			city=card_orm.city,
 			img=card_orm.img,
 			website=card_orm.website,
+			lat=card_orm.lat,
+			lng=card_orm.lng,
+			address=card_orm.address,
 		)
