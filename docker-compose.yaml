@@ -119,7 +119,6 @@ services:
           --email snick25rs@gmail.com \
           --agree-tos --no-eff-email \
           -d kartadobra-nko.ru -d www.kartadobra-nko.ru \
-          --staging \
           --non-interactive
         sleep 12h
       done'
