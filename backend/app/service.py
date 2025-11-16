@@ -1,7 +1,7 @@
 from typing import List
-from ..app.usecase import CardNKOService
-from ..domain.repo import CardRepo
-from ..domain.entity import Card
+from backend.app.usecase import CardNKOService
+from backend.domain.repo import CardRepo
+from backend.domain.entity import Card
 
 class CardNKOServiceImpl(CardNKOService):
     def __init__(self, repo:CardRepo):
