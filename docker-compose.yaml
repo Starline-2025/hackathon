@@ -65,7 +65,7 @@ services:
       DB_DATABASE: ${POSTGRES_DB}
       DB_USER: ${POSTGRES_USER}
       DB_PASSWORD: ${POSTGRES_PASSWORD}
-      PUBLIC_URL: ${PUBLIC_URL}/admin
+      PUBLIC_URL: ${PUBLIC_URL}
     networks:
       - my_network
     depends_on:
