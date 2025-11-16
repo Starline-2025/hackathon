@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Карта Добра API
-  description: API для получения и создания карточек
+  description: API для получения и создания карточек НКО
   version: 1.0.0
 servers:
   - url: https://kartadobra-nko.ru
