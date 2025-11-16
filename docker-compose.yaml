@@ -72,7 +72,7 @@ services:
       db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "node", "-e", "require('http').get('http://0.0.0.0:8055/admin/', r => [200,301,302].includes(r.statusCode) ? process.exit(0) : process.exit(1))"]
+      test: ["CMD", "node", "-e", "require('http').get('http://0.0.0.0:8055/', r => [200,301,302].includes(r.statusCode) ? process.exit(0) : process.exit(1))"]
       interval: 30s
       timeout: 5s
       retries: 15
