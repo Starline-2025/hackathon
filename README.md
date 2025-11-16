@@ -1,5 +1,17 @@
-# hackathon
-Репозиторий команды Starline
+# Репозиторий команды Starline
+
+## Admin-panel:
+
+[https://kartadobra-nko.ru/admin/](https://kartadobra-nko.ru/admin/)
+
+### Email:
+```
+admin@example.com 
+```
+### Password:
+```
+secret
+```
 <!-- DOCS_START -->
 # 📘 API Documentation
 
