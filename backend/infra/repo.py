@@ -1,12 +1,13 @@
 from typing import List
+from sqlalchemy import func
 
-from .errors.error import InvalidGetCards, InvalidCreateCard
-from ..domain.entity import Card
-from ..domain.errors import CardsNotFoundException
-from ..domain.repo import CardRepo
-from ..infra.db.db_connector import get_session
-from ..infra.models.model import CardNKOORM
-from ..logger import error_logger
+from backend.infra.errors.error import InvalidGetCards, InvalidCreateCard
+from backend.domain.entity import Card
+from backend.domain.errors import CardsNotFoundException
+from backend.domain.repo import CardRepo
+from backend.infra.db.db_connector import get_session
+from backend.infra.models.model import CardNKOORM
+from backend.logger import error_logger
 
 class CardRepoImpl(CardRepo):
 	def get_cards(self, name : str | None, category: str | None, city: str | None) -> List[Card]:
@@ -16,9 +17,9 @@ class CardRepoImpl(CardRepo):
 				if name:
 					query = query.filter(CardNKOORM.name == name)
 				if category:
-					query = query.filter(CardNKOORM.category == category)
+					query = query.filter(func.lower(CardNKOORM.category) == category.lower())
 				if city:
-					query = query.filter(CardNKOORM.city == city)
+					query = query.filter(func.lower(CardNKOORM.city) == city.lower())
 				results = query.all()
 				if not results:
 					raise CardsNotFoundException()
