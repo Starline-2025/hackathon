@@ -1,4 +1,4 @@
-from ..core.error import Error
+from backend.core.error import Error
 
 LAYER = "Domain/Card"
 
