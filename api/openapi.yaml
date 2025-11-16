@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Тест Карта Добра API
+  title: Карта Добра API
   description: API для получения и создания карточек
   version: 1.0.0
 servers:
