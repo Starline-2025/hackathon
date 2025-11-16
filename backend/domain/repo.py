@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import List
-from ..domain.entity import Card
+from backend.domain.entity import Card
 
 
 class CardRepo(ABC):
