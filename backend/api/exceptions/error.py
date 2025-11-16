@@ -1,11 +1,11 @@
 from fastapi import HTTPException
 
 from starlette.status import HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
-from error_messages import BadRequestErrorMessage, InternalServerErrorMessage
+from backend.api.exceptions.error_messages import BadRequestErrorMessage, InternalServerErrorMessage
 
-from ...domain.errors import CardsNotFoundException
+from backend.domain.errors import CardsNotFoundException
 
-from ...logger import status_logger
+from backend.logger import status_logger
 
 class Error:
 	@staticmethod
