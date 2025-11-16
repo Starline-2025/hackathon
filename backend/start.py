@@ -1,10 +1,10 @@
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
-from api.handler import router
+from backend.api.handler import router
 import uvicorn
 from fastapi.middleware.cors import CORSMiddleware
-from logger import status_logger
+from backend.logger import status_logger
 
 import os
 @asynccontextmanager
