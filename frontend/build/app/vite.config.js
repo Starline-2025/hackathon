@@ -9,7 +9,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 export default defineConfig({
   plugins: [vue(), vueJsx(), vueDevTools()],
   server: {
-    port: 8000,
+    proxy: {
+      '/api': {
+        target: 'https://kartadobra-nko.ru',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api/, '/api'),
+      },
+    },
   },
   resolve: {
     alias: {

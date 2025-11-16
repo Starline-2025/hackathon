@@ -1,13 +1,33 @@
 <script setup>
-import { ref, reactive, provide } from 'vue'
+import { ref, reactive, provide, onMounted } from 'vue'
 
 import Home from './views/Home.vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import NKOFormModal from './components/NKOFormModal.vue'
-import nkoData from './data/organizations.js'
 
-const organizations = reactive(nkoData)
+const organizations = reactive([])
+
+async function getAllCards() {
+  try {
+    const response = await fetch('/api/cards')
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+    const data = await response.json()
+    organizations.splice(0, organizations.length, ...data)
+    console.log('organizations', organizations)
+
+    return data
+  } catch (error) {
+    console.log('Error', error)
+  }
+}
+
+onMounted(async () => {
+  await getAllCards()
+})
+
 const isOpenModal = ref(false)
 
 const toggleOpenModal = () => {
