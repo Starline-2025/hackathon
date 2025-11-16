@@ -1,0 +1,22 @@
+@use '../colors' as *;
+
+h2 {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: $rosatom-dark;
+  margin: 100px 0 40px;
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+  }
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}

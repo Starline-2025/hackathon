@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import '../assets/styles/components/nko-form-modal.scss'
 
 const fileInput = ref(null)
 const fileName = ref('')
@@ -77,7 +78,6 @@ const validateForm = (event) => {
   return isValid
 }
 
-// Управление скроллом body
 onMounted(() => {
   document.body.classList.add('no-scroll')
 })
@@ -197,4 +197,4 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style lang="scss" src="../assets/styles/components/nko-form-modal.scss" scoped></style>
+<style lang="scss" scoped></style>

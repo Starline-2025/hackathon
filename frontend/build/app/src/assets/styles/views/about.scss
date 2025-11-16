@@ -1,0 +1,71 @@
+@use '../colors' as *;
+
+h2 {
+  text-align: center;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: $rosatom-dark;
+  margin: 100px 0 40px;
+
+  @media (max-width: 1024px) {
+    font-size: 36px;
+  }
+  @media (max-width: 768px) {
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+  @media (max-width: 480px) {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+.intro {
+  font-size: 16px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+}
+
+ul {
+  padding-left: 20px;
+  margin-bottom: 30px;
+  margin-top: 10px;
+
+  li {
+    margin-bottom: 12px;
+    font-size: 16px;
+    position: relative;
+    padding-left: 24px;
+
+    &::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: $rosatom-blue;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    @media (max-width: 768px) {
+      font-size: 15px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 14px;
+      margin-bottom: 10px;
+
+      &::before {
+        font-size: 18px;
+      }
+    }
+  }
+}

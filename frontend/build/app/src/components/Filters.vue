@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import '../assets/styles/components/filters.scss'
+</script>
 
 <template>
   <section class="filters">
@@ -59,4 +61,4 @@
   </section>
 </template>
 
-<style lang="scss" src="../assets/styles/components/filters.scss" scoped></style>
+<style lang="scss" scoped></style>

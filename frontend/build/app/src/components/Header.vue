@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, onMounted, onUnmounted } from 'vue'
+import '../assets/styles/components/header.scss'
 
 const emit = defineEmits(['toggleOpenModal'])
 
@@ -43,16 +44,19 @@ const listNavItems = reactive([
     id: 1,
     text: 'Карта',
     icon: '/icons/marker.png',
+    route: '/',
   },
   {
     id: 2,
     text: 'Список организаций',
     icon: '/icons/list.png',
+    route: '/organizations',
   },
   {
     id: 3,
     text: 'О проекте',
     icon: '/icons/info-white.png',
+    route: '/about',
   },
 ])
 </script>
@@ -60,14 +64,16 @@ const listNavItems = reactive([
 <template>
   <header class="header">
     <div class="header-inner">
-      <div class="header-block">
-        <img class="logo" src="/logo-header.png" alt="Логотип" />
-        <div class="logo-divider"></div>
-        <div class="header-text">
-          <h3 class="heading heading-3">Карта добрых дел</h3>
-          <p class="subheading">НКО и волонтёрские организации городов Росатома</p>
+      <RouterLink to="/">
+        <div class="header-block">
+          <img class="logo" src="/logo-header.png" alt="Логотип" />
+          <div class="logo-divider"></div>
+          <div class="header-text">
+            <h3>Карта добрых дел</h3>
+            <p>НКО и волонтёрские организации городов Росатома</p>
+          </div>
         </div>
-      </div>
+      </RouterLink>
 
       <button
         class="burger-btn"
@@ -82,15 +88,17 @@ const listNavItems = reactive([
 
       <nav class="nav" :class="{ 'mobile-open': isMobileMenuOpen }">
         <ul class="menu-list">
-          <li
+          <RouterLink
             v-for="item in listNavItems"
             :key="item.id"
+            :to="item.route"
+            class="menu-item"
             :class="{ active: activeIndex === item.id }"
             @click="handleNavClick(item.id)"
           >
             <img :src="item.icon" :alt="item.text" />
             {{ item.text }}
-          </li>
+          </RouterLink>
         </ul>
       </nav>
 
@@ -106,4 +114,4 @@ const listNavItems = reactive([
   </header>
 </template>
 
-<style lang="scss" src="../assets/styles/components/header.scss" scoped></style>
+<style lang="scss" scoped></style>

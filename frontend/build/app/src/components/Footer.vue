@@ -1,3 +1,7 @@
+<script setup>
+import '../assets/styles/components/footer.scss'
+</script>
+
 <template>
   <footer class="footer">
     <div class="footer-content">
@@ -10,4 +14,4 @@
   </footer>
 </template>
 
-<style lang="scss" src="../assets/styles/components/footer.scss" scoped></style>
+<style lang="scss" scoped></style>

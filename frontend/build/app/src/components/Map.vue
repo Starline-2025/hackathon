@@ -1,70 +1,12 @@
 <script setup>
+import { inject } from 'vue'
 import '../assets/styles/components/map.scss'
-import nkoData from '../data/organizations.js'
-import { onMounted, onUnmounted, ref, reactive } from 'vue'
+import { onMounted, onUnmounted, ref } from 'vue'
+
+const organizations = inject('organizations')
 
 const mapContainer = ref(null)
-const organizations = reactive(nkoData)
 let mapInstance = null
-
-const coordinates = [
-  // Обнинск (2)
-  [55.095, 36.613],
-  [55.092, 36.62],
-
-  // Саров (3)
-  [54.913, 43.328],
-  [54.905, 43.34],
-  [54.92, 43.315],
-
-  // Северск (2)
-  [56.607, 84.903],
-  [56.615, 84.89],
-
-  // Волгодонск (2)
-  [47.52, 42.13],
-  [47.53, 42.145],
-
-  // Зеленогорск (2)
-  [56.103, 94.58],
-  [56.095, 94.595],
-
-  // Балаково (2)
-  [52.013, 47.72],
-  [52.005, 47.735],
-
-  // Димитровград (2)
-  [54.215, 49.595],
-  [54.225, 49.58],
-
-  // Нововоронеж (2)
-  [51.315, 39.185],
-  [51.325, 39.17],
-
-  // Озерск (2)
-  [55.74, 60.68],
-  [55.75, 60.665],
-
-  // Сосновый Бор (2)
-  [59.9, 28.84],
-  [59.91, 28.855],
-
-  // Электросталь (2)
-  [55.795, 38.455],
-  [55.805, 38.47],
-
-  // Байкальск (2)
-  [51.5, 104.49],
-  [51.49, 104.505],
-
-  // Ангарск (2)
-  [52.525, 103.905],
-  [52.535, 103.89],
-
-  // Билибино (2)
-  [68.055, 166.43],
-  [68.065, 166.445],
-]
 
 const loadYandexMapsAPI = () => {
   return new Promise((resolve, reject) => {
@@ -92,7 +34,7 @@ onMounted(async () => {
   try {
     const ymaps = await loadYandexMapsAPI()
     mapInstance = new ymaps.Map(mapContainer.value, {
-      center: [55.751574, 37.573856],
+      center: [55.751574, 37.573856], // Центр по умолчанию
       zoom: 7,
       controls: ['zoomControl', 'typeSelector'],
     })
@@ -140,25 +82,30 @@ onMounted(async () => {
       },
     )
 
-    organizations.forEach((org, index) => {
-      if (!coordinates[index]) return
+    // Перебираем каждую организацию
+    organizations.forEach((org) => {
+      // Проверяем, есть ли у организации координаты
+      if (org.lat !== undefined && org.lng !== undefined) {
+        // Создаём метку с координатами из org
+        const placemark = new ymaps.Placemark(
+          [org.lat, org.lng],
+          {
+            balloonContentHeader: org.name,
+            balloonContentBody: org.description,
+            balloonContentFooter: org.contacts,
+            balloonData: org,
+          },
+          {
+            balloonLayout: customBalloon,
+            preset: 'islands#blueIcon',
+            iconColor: '#003274',
+          },
+        )
 
-      const placemark = new ymaps.Placemark(
-        coordinates[index],
-        {
-          balloonContentHeader: org.name,
-          balloonContentBody: org.description,
-          balloonContentFooter: org.contacts,
-          balloonData: org,
-        },
-        {
-          balloonLayout: customBalloon,
-          preset: 'islands#blueIcon',
-          iconColor: '#003274',
-        },
-      )
-
-      mapInstance.geoObjects.add(placemark)
+        mapInstance.geoObjects.add(placemark)
+      } else {
+        console.warn(`Организация "${org.name}" не имеет координат (lat/lng) и будет пропущена.`)
+      }
     })
   } catch (error) {
     console.error('Ошибка загрузки карты:', error)

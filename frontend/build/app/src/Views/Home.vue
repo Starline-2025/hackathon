@@ -1,20 +1,13 @@
 <script setup>
-import { computed, reactive, ref } from 'vue'
+import { inject } from 'vue'
+import '../assets/styles/views/home.scss'
 import Map from '../components/Map.vue'
 import Filters from '../components/Filters.vue'
-import OrganizationCard from '../components/OrganizationCard.vue'
-import nkoData from '../data/organizations.js'
+import CardList from '../components/CardList.vue'
 
-const organizations = reactive(nkoData)
-const showAll = ref(false)
+const organizations = inject('organizations')
 
-const toggleShowAll = () => {
-  showAll.value = !showAll.value
-}
-
-const displayedOrganizations = computed(() => {
-  return showAll.value ? organizations : organizations.slice(0, 3)
-})
+const displayedOrganizations = organizations.slice(0, 4)
 </script>
 
 <template>
@@ -28,23 +21,15 @@ const displayedOrganizations = computed(() => {
       </div>
       <Filters />
       <Map />
-      <h3>Организации</h3>
-      <div class="card-grid">
-        <OrganizationCard
-          v-for="org in displayedOrganizations"
-          :key="org.id"
-          :name="org.name"
-          :category="org.category"
-          :description="org.description"
-          :city="org.city"
-        />
-        <button v-if="!showAll" class="btn show-more-btn" @click="toggleShowAll">
-          Показать все ({{ organizations.length }})
-        </button>
-        <button v-else class="btn show-more-btn" @click="toggleShowAll">Скрыть</button>
+      <h2>Организации</h2>
+      <div class="card-section">
+        <CardList :items="displayedOrganizations" />
+        <RouterLink to="/organizations">
+          <button class="btn show-more-btn">Показать все</button>
+        </RouterLink>
       </div>
     </div>
   </div>
 </template>
 
-<style lang="scss" src="../assets/styles/views/home.scss" scoped></style>
+<style lang="scss" scoped></style>

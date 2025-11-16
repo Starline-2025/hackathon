@@ -1,15 +1,20 @@
 <script setup>
+import { ref, reactive, provide } from 'vue'
+
 import Home from './views/Home.vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import NKOFormModal from './components/NKOFormModal.vue'
-import { ref } from 'vue'
+import nkoData from './data/organizations.js'
 
+const organizations = reactive(nkoData)
 const isOpenModal = ref(false)
 
 const toggleOpenModal = () => {
   isOpenModal.value = !isOpenModal.value
 }
+
+provide('organizations', organizations)
 </script>
 
 <template>
@@ -21,7 +26,7 @@ const toggleOpenModal = () => {
     />
     <Header @toggleOpenModal="toggleOpenModal" />
     <div class="main-content">
-      <Home />
+      <RouterView />
     </div>
     <Footer />
   </div>
