@@ -13,7 +13,7 @@
 
 ---
 
-## `GET /get_cards`
+## `GET /api/get_cards`
 
 **Summary:** Получить карточки с фильтрацией
 
@@ -55,7 +55,7 @@
 
 ---
 
-## `POST /get_cards`
+## `POST /api/get_cards`
 
 **Summary:** Создать новую карточку
 
