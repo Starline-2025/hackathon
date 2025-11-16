@@ -14,6 +14,13 @@ async def app_logger(application):
 
 
 app = FastAPI(lifespan=app_logger)#docs_url=None, redoc_url=None
+app.add_middleware(
+	CORSMiddleware,# type: ignore
+	allow_origins=["*"],
+	allow_credentials=True,
+	allow_methods=["GET", "POST"],  # Разрешаем все методы HTTP (GET, POST, PUT, DELETE и т.д.)
+	allow_headers=["Content-Type"],  # Разрешаем все заголовки
+)
 app.include_router(router, prefix="/api")
 
 if __name__ == "__main__":
