@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Карта Добра API
+  description: API для получения и создания карточек
+  version: 1.0.0
+servers:
+  - url: https://kartadobra-nko.ru
+paths:
+  /get_cards:
+    get:
+      summary: Получить карточки с фильтрацией
+      parameters:
+        - name: name
+          in: query
+          description: Имя карточки
+          required: false
+          schema:
+            type: string
+        - name: city
+          in: query
+          description: Город
+          required: false
+          schema:
+            type: string
+        - name: category
+          in: query
+          description: Категория
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Список карточек
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Card'
+        '404':
+          description: Карточки не найдены
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Создать новую карточку
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Card'
+      responses:
+        '200':
+          description: Карточка создана
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+components:
+  schemas:
+    Card:
+      type: object
+      properties:
+        name:
+          type: string
+        category:
+          type: string
+        description:
+          type: string
+        city:
+          type: string
+        website:
+          type: string
+        lat:
+          type: number
+          format: float
+        lng:
+          type: number
+          format: float
+        address:
+          type: string
+          nullable: true
+        contacts:
+          type: string
+          nullable: true
+        img:
+          type: string
+          nullable: true
+      required:
+        - name
+        - category
+        - description
+        - city
+        - website
+        - lat
+        - lng
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
