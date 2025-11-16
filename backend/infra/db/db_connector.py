@@ -2,7 +2,7 @@ import atexit
 from contextlib import contextmanager
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from ...settings import DB_CONFIG, POOL_SIZE, POOL_MAX_SIZE
+from backend.settings import DB_CONFIG, POOL_SIZE, POOL_MAX_SIZE
 
 DATABASE_URL = (
     f"postgresql://{DB_CONFIG['user']}:{DB_CONFIG['password']}"
