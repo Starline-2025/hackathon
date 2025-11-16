@@ -1,6 +1,7 @@
 <script setup>
 import Home from './views/Home.vue'
 import Header from './components/Header.vue'
+import Footer from './components/Footer.vue'
 import NKOFormModal from './components/NKOFormModal.vue'
 import { ref } from 'vue'
 
@@ -12,15 +13,28 @@ const toggleOpenModal = () => {
 </script>
 
 <template>
-  <div>
+  <div class="page-wrapper">
     <NKOFormModal
       v-if="isOpenModal"
       :isOpenModal="isOpenModal"
       @toggleOpenModal="toggleOpenModal"
     />
     <Header @toggleOpenModal="toggleOpenModal" />
-    <Home />
+    <div class="main-content">
+      <Home />
+    </div>
+    <Footer />
   </div>
 </template>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+}
+</style>

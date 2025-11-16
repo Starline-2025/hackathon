@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from 'vue'
+import { ref, reactive, onMounted, onUnmounted } from 'vue'
 
 const emit = defineEmits(['toggleOpenModal'])
 
@@ -7,7 +7,36 @@ const handleOpen = () => {
   emit('toggleOpenModal')
 }
 
-const activeIndex = ref(null)
+const activeIndex = ref(1)
+const isMobileMenuOpen = ref(false)
+const isMobile = ref(false)
+
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value
+}
+
+const handleNavClick = (id) => {
+  activeIndex.value = id
+  if (isMobile.value) {
+    isMobileMenuOpen.value = false
+  }
+}
+
+const checkMobile = () => {
+  isMobile.value = window.innerWidth <= 768
+  if (!isMobile.value) {
+    isMobileMenuOpen.value = false
+  }
+}
+
+onMounted(() => {
+  checkMobile()
+  window.addEventListener('resize', checkMobile)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('resize', checkMobile)
+})
 
 const listNavItems = reactive([
   {
@@ -32,27 +61,47 @@ const listNavItems = reactive([
   <header class="header">
     <div class="header-inner">
       <div class="header-block">
-        <img class="logo" src="/logo-header.png" alt="" />
+        <img class="logo" src="/logo-header.png" alt="Логотип" />
         <div class="logo-divider"></div>
-        <div>
+        <div class="header-text">
           <h3 class="heading heading-3">Карта добрых дел</h3>
           <p class="subheading">НКО и волонтёрские организации городов Росатома</p>
         </div>
       </div>
-      <nav class="nav">
+
+      <button
+        class="burger-btn"
+        @click="toggleMobileMenu"
+        :class="{ active: isMobileMenuOpen }"
+        v-if="isMobile"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav" :class="{ 'mobile-open': isMobileMenuOpen }">
         <ul class="menu-list">
           <li
             v-for="item in listNavItems"
             :key="item.id"
             :class="{ active: activeIndex === item.id }"
-            @click="activeIndex = item.id"
+            @click="handleNavClick(item.id)"
           >
-            <img :src="item.icon" alt="" />
+            <img :src="item.icon" :alt="item.text" />
             {{ item.text }}
           </li>
         </ul>
       </nav>
+
       <button class="btn btn-primary" @click="handleOpen">Добавить НКО</button>
+
+      <div
+        class="nav-overlay"
+        :class="{ active: isMobileMenuOpen && isMobile }"
+        @click="toggleMobileMenu"
+        v-if="isMobile"
+      ></div>
     </div>
   </header>
 </template>

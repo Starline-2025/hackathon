@@ -8,9 +8,18 @@
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 50, 116, 0.12);
-  transition:
-    transform 0.2s,
-    box-shadow 0.2s;
+  transition: all 0.2s;
+
+  @media (max-width: 768px) {
+    width: 300px;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 480px) {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 8px;
+  }
 
   &:hover {
     transform: translateY(-5px);
@@ -23,6 +32,16 @@
   gap: 16px;
   padding: 24px 24px 16px;
   border-bottom: 1px solid $rosatom-lightest;
+
+  @media (max-width: 768px) {
+    padding: 20px 20px 12px;
+    gap: 12px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 16px 16px 12px;
+    gap: 10px;
+  }
 }
 
 .card__avatar {
@@ -36,6 +55,12 @@
   color: $rosatom-dark;
   font-weight: bold;
   font-size: 1rem;
+
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
 }
 
 .card__info {
@@ -48,6 +73,14 @@
   font-size: 22px;
   color: $rosatom-dark;
   margin: 0 0 4px;
+
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 }
 
 .card__meta {
@@ -56,6 +89,10 @@
   gap: 4px;
   font-size: 15px;
   color: $gray;
+
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
 }
 
 .card__location,
@@ -71,6 +108,15 @@
   color: $text-dark;
   line-height: 1.6;
   margin: 0;
+
+  @media (max-width: 768px) {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 16px;
+  }
 }
 
 .card__tags {
@@ -78,12 +124,30 @@
   flex-wrap: wrap;
   gap: 8px;
   padding: 0 24px;
+
+  @media (max-width: 768px) {
+    padding: 0 20px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0 16px;
+  }
 }
 
 .card__actions {
   display: flex;
   gap: 12px;
   padding: 20px 24px;
+
+  @media (max-width: 768px) {
+    padding: 16px 20px;
+    gap: 10px;
+  }
+
+  @media (max-width: 480px) {
+    padding: 12px 16px;
+    gap: 8px;
+  }
 }
 
 .tag {
@@ -96,6 +160,11 @@
   border-radius: 20px;
   font-size: 14px;
   font-weight: 500;
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 3px 10px;
+  }
 }
 
 .btn-secondary {
@@ -109,6 +178,12 @@
   font-size: 16px;
   cursor: pointer;
   border: 1px solid darken($gray-light, 5%);
+
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    font-size: 14px;
+    gap: 8px;
+  }
 
   &:hover {
     background: darken($gray-light, 5%);

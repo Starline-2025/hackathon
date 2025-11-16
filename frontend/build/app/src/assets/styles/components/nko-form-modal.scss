@@ -1,5 +1,9 @@
 @use '../colors' as *;
 
+:global(.no-scroll) {
+  overflow: hidden;
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -10,75 +14,124 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10;
+  z-index: 1000;
+  padding: 20px;
+
+  @media (max-width: 768px) {
+    padding: 0;
+    align-items: flex-start;
+    background: $white;
+  }
 }
 
-.disable-scroll {
-  overflow: hidden;
+.popup-container {
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 768px) {
+    max-width: none;
+    max-height: none;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .popup {
-  position: relative;
   background: $white;
-  border-radius: 6px;
-  width: 500px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  z-index: 10;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+
+  @media (max-width: 768px) {
+    border-radius: 0;
+    box-shadow: none;
+    height: 100%;
+  }
 }
 
 .popup-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: -2px;
-  height: 60px;
-  border-radius: 6px 6px 0 0;
-
+  height: 70px;
   background: linear-gradient(135deg, $rosatom-dark, $rosatom-blue);
   color: $white;
-  box-shadow: 0 4px 12px rgba(0, 50, 116, 0.2);
+  position: relative;
+  flex-shrink: 0;
+
+  @media (max-width: 768px) {
+    height: 80px;
+  }
 }
 
 .popup-title {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-
   color: $white;
-  font-size: 24px;
+  font-size: 22px;
   text-align: center;
+  margin: 0;
+  font-weight: 600;
+
+  @media (max-width: 768px) {
+    font-size: 24px;
+  }
 }
 
 .popup-close {
   position: absolute;
-  top: 15px;
-  right: 15px;
-
+  top: 20px;
+  right: 20px;
   width: 24px;
   height: 24px;
-
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
+  background: none;
+  border: none;
 
   &:hover {
     opacity: 0.8;
     transform: scale(1.1);
+  }
+
+  @media (max-width: 768px) {
+    top: 25px;
+    right: 20px;
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.popup-scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(90vh - 70px);
+
+  @media (max-width: 768px) {
+    max-height: none;
   }
 }
 
 .popup-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  padding: 20px;
+  gap: 20px;
+  padding: 25px;
+
+  @media (max-width: 768px) {
+    padding: 30px 25px;
+    gap: 24px;
+  }
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .popup-label {
@@ -86,42 +139,90 @@
   align-items: center;
   gap: 5px;
   color: $text-dark;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14px;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .popup-input,
 .popup-textarea {
-  outline: 1px solid $rosatom-lightest;
-  padding: 12px;
-  border: 1px solid $gray-light;
+  padding: 12px 14px;
+  border: 2px solid $gray-light;
   border-radius: 6px;
   font-size: 14px;
   width: 100%;
+  transition: all 0.2s ease;
+  background: $white;
+
+  &:focus {
+    outline: none;
+    border-color: $rosatom-blue;
+    box-shadow: 0 0 0 3px rgba(2, 94, 161, 0.1);
+  }
+
+  &:hover {
+    border-color: $rosatom-light;
+  }
+
+  @media (max-width: 768px) {
+    padding: 14px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+  }
 }
+
 .popup-textarea {
   resize: none;
-  height: 120px;
+  height: 100px;
+  min-height: 100px;
+
+  @media (max-width: 768px) {
+    height: 120px;
+    min-height: 120px;
+  }
 }
+
 .popup-button {
   background: $rosatom-blue;
   color: $white;
-  padding: 10px;
+  padding: 14px 28px;
   border-radius: 6px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  max-width: 250px;
+  margin: 10px auto 0;
+  box-shadow: 0 4px 12px rgba(2, 94, 161, 0.3);
 
   &:hover {
     background: $rosatom-dark;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(2, 94, 161, 0.4);
+  }
+
+  @media (max-width: 768px) {
+    padding: 16px 32px;
+    font-size: 18px;
+    max-width: 300px;
+    border-radius: 8px;
+    margin-top: 20px;
   }
 }
 
 .file-upload-wrapper {
   position: relative;
-  display: inline-block;
   width: 100%;
 }
 
 .file-input {
   position: absolute;
-  left: -99px;
+  left: -9999px;
   opacity: 0;
 }
 
@@ -135,47 +236,72 @@
   cursor: pointer;
   transition: all 0.2s ease;
   gap: 12px;
+
+  @media (max-width: 768px) {
+    padding: 20px;
+    border-radius: 8px;
+    gap: 16px;
+  }
 }
 
 .file-label:hover {
   border-color: $rosatom-blue;
-  background: $gray-light;
+  background: lighten($rosatom-lightest, 2%);
 }
 
 .file-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   padding: 10px 16px;
   background: $rosatom-blue;
-
   border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 50, 116, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 50, 116, 0.2);
   transition: all 0.2s ease;
+  flex-shrink: 0;
 
   img {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   span {
     color: $white;
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    padding: 12px 20px;
+    gap: 12px;
+
+    img {
+      width: 20px;
+      height: 20px;
+    }
+
+    span {
+      font-size: 16px;
+    }
   }
 }
 
 .file-label:hover .file-button {
   background: $rosatom-dark;
   transform: translateY(-1px);
-  box-shadow: 0 4px 8px rgba(0, 50, 116, 0.2);
+  box-shadow: 0 4px 12px rgba(0, 50, 116, 0.3);
 }
 
 .file-name {
   color: $gray;
   font-size: 14px;
+  flex: 1;
+
+  @media (max-width: 768px) {
+    font-size: 16px;
+  }
 }
 
 .file-name.has-file {
@@ -185,10 +311,7 @@
 
 .file-preview {
   position: relative;
-  margin-top: 8px;
-  padding: 10px;
-  display: inline-block;
-  overflow: hidden;
+  margin-top: 10px;
 }
 
 .preview-image {
@@ -197,32 +320,163 @@
   object-fit: cover;
   border-radius: 6px;
   border: 2px solid $rosatom-dark;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    width: 140px;
+    height: 140px;
+    border-radius: 8px;
+  }
 }
 
 .clear-btn {
   position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 24px;
-  height: 24px;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
   background: $rosatom-dark;
   border: none;
   border-radius: 50%;
   cursor: pointer;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 
   img {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
+  }
+
+  &:hover {
+    background: $rosatom-blue;
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 50, 116, 0.3);
+  }
+
+  @media (max-width: 768px) {
+    width: 32px;
+    height: 32px;
+    top: 8px;
+    right: 8px;
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
   }
 }
 
-.clear-btn:hover {
-  background: $rosatom-blue;
-  box-shadow: 0 4px 8px rgba(0, 50, 116, 0.3);
+@media (max-width: 480px) {
+  .popup-form {
+    padding: 25px 20px;
+    gap: 20px;
+  }
+
+  .popup-header {
+    height: 70px;
+  }
+
+  .popup-title {
+    font-size: 22px;
+  }
+
+  .popup-close {
+    top: 20px;
+    right: 15px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .popup-label {
+    font-size: 15px;
+  }
+
+  .popup-input,
+  .popup-textarea {
+    padding: 12px 14px;
+    font-size: 15px;
+  }
+
+  .popup-textarea {
+    height: 110px;
+    min-height: 110px;
+  }
+
+  .file-label {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .file-button {
+    padding: 10px 16px;
+
+    span {
+      font-size: 14px;
+    }
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .file-name {
+    font-size: 14px;
+  }
+
+  .preview-image {
+    width: 120px;
+    height: 120px;
+  }
+
+  .popup-button {
+    padding: 14px 28px;
+    font-size: 16px;
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 360px) {
+  .popup-form {
+    padding: 20px 16px;
+    gap: 18px;
+  }
+
+  .popup-header {
+    height: 60px;
+  }
+
+  .popup-title {
+    font-size: 20px;
+  }
+
+  .popup-input,
+  .popup-textarea {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+
+  .popup-textarea {
+    height: 100px;
+    min-height: 100px;
+  }
+
+  .file-label {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .file-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .preview-image {
+    width: 100px;
+    height: 100px;
+  }
 }
