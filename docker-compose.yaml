@@ -89,7 +89,6 @@ services:
       - "443:443"
     volumes:
       - ./logs/nginx:/var/log/nginx
-      - ./certs:/etc/letsencrypt
       - ./certs-data:/data
     networks:
       - my_network
@@ -110,7 +109,7 @@ services:
     image: certbot/certbot
     container_name: certbot
     volumes:
-      - ./certs:/etc/letsencrypt
+      - ./certs:/etc/letsencrypt      # сюда certbot положит реальные сертификаты
       - ./certs-data:/data
     entrypoint: |
       /bin/sh -c '
