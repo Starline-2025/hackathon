@@ -1,7 +1,7 @@
 from fastapi import HTTPException
 
-from starlette.status import HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR
-from backend.api.exceptions.error_messages import BadRequestErrorMessage, InternalServerErrorMessage
+from starlette.status import HTTP_404_NOT_FOUND, HTTP_500_INTERNAL_SERVER_ERROR
+from backend.api.exceptions.error_messages import NotFoundErrorMessage, InternalServerErrorMessage
 
 from backend.domain.errors import CardsNotFoundException
 
@@ -18,8 +18,8 @@ class Error:
 			CardsNotFoundException,
 		)):
 			raise HTTPException(
-				status_code=HTTP_400_BAD_REQUEST,
-				detail=BadRequestErrorMessage
+				status_code=HTTP_404_NOT_FOUND,
+				detail=NotFoundErrorMessage
 			)
 		
 		raise HTTPException(
