@@ -1,4 +1,4 @@
-from ...domain.errors import CardServerException
+from backend.domain.errors import CardServerException
 
 LAYER = "Infra/Card"
 
