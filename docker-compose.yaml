@@ -90,6 +90,8 @@ services:
     volumes:
       - ./logs/nginx:/var/log/nginx
       - ./certs-data:/data
+      - ./frontend/dist:/usr/share/nginx/html       # фронтенд (dist) монтируется
+      - ./frontend/nginx.conf:/etc/nginx/nginx.conf # конфиг Nginx монтируется
     networks:
       - my_network
     restart: unless-stopped
