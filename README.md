@@ -7,7 +7,9 @@
 
 **Version:** 1.0.0
 
-**Description:** API для получения и создания карточек
+**Description:** API для получения и создания карточек НКО
+
+**OpenApi File:** api/openapi.yaml
 
 ---
 
