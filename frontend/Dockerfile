@@ -1,18 +1,15 @@
-# Используем официальный образ Nginx
-FROM nginx:stable-alpine
+FROM nginx:latest
 
-# Рабочая директория внутри контейнера
-WORKDIR /usr/share/nginx/html
+RUN mkdir -p /etc/letsencrypt/live/kartadobra-nko.ru
 
-# Копируем локальные статические файлы в контейнер
-# Например, index.html, CSS, JS и т.д.
-COPY ./dist .
+RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+    -keyout /etc/letsencrypt/live/kartadobra-nko.ru/privkey.pem \
+    -out /etc/letsencrypt/live/kartadobra-nko.ru/fullchain.pem \
+    -subj "/CN=localhost"
 
-# Копируем свой конфиг nginx (если есть)
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY dist/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Порт, который будет слушать контейнер
-EXPOSE 80
+EXPOSE 80 443
 
-# Запуск Nginx в фореграунд режиме
 CMD ["nginx", "-g", "daemon off;"]
