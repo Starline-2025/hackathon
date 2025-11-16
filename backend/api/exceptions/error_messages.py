@@ -1,2 +1,2 @@
-BadRequestErrorMessage = "This is BAD REQUEST"
+NotFoundErrorMessage = "Not Found"
 InternalServerErrorMessage = "Internal server error"
