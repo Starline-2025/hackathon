@@ -1,23 +1,29 @@
 <script setup>
 import { ref, reactive } from 'vue'
 
+const emit = defineEmits(['toggleOpenModal'])
+
+const handleOpen = () => {
+  emit('toggleOpenModal')
+}
+
 const activeIndex = ref(null)
 
 const listNavItems = reactive([
   {
     id: 1,
     text: 'Карта',
-    icon: '/header/marker.png',
+    icon: '/icons/marker.png',
   },
   {
     id: 2,
     text: 'Список организаций',
-    icon: '/header/list.png',
+    icon: '/icons/list.png',
   },
   {
     id: 3,
     text: 'О проекте',
-    icon: '/header/info.png',
+    icon: '/icons/info-white.png',
   },
 ])
 </script>
@@ -46,7 +52,7 @@ const listNavItems = reactive([
           </li>
         </ul>
       </nav>
-      <button class="btn btn-primary">Добавить НКО</button>
+      <button class="btn btn-primary" @click="handleOpen">Добавить НКО</button>
     </div>
   </header>
 </template>

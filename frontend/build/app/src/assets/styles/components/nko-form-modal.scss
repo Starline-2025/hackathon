@@ -1,0 +1,228 @@
+@use '../colors' as *;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.disable-scroll {
+  overflow: hidden;
+}
+
+.popup {
+  position: relative;
+  background: $white;
+  border-radius: 6px;
+  width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -2px;
+  height: 60px;
+  border-radius: 6px 6px 0 0;
+
+  background: linear-gradient(135deg, $rosatom-dark, $rosatom-blue);
+  color: $white;
+  box-shadow: 0 4px 12px rgba(0, 50, 116, 0.2);
+}
+
+.popup-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  color: $white;
+  font-size: 24px;
+  text-align: center;
+}
+
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  width: 24px;
+  height: 24px;
+
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.popup-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: $text-dark;
+  font-weight: bold;
+}
+
+.popup-input,
+.popup-textarea {
+  outline: 1px solid $rosatom-lightest;
+  padding: 12px;
+  border: 1px solid $gray-light;
+  border-radius: 6px;
+  font-size: 14px;
+  width: 100%;
+}
+.popup-textarea {
+  resize: none;
+  height: 120px;
+}
+.popup-button {
+  background: $rosatom-blue;
+  color: $white;
+  padding: 10px;
+  border-radius: 6px;
+
+  &:hover {
+    background: $rosatom-dark;
+  }
+}
+
+.file-upload-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.file-input {
+  position: absolute;
+  left: -99px;
+  opacity: 0;
+}
+
+.file-label {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border: 2px dashed $rosatom-light;
+  border-radius: 6px;
+  background: $rosatom-lightest;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  gap: 12px;
+}
+
+.file-label:hover {
+  border-color: $rosatom-blue;
+  background: $gray-light;
+}
+
+.file-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  background: $rosatom-blue;
+
+  border-radius: 6px;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 50, 116, 0.2);
+  transition: all 0.2s ease;
+
+  img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    color: $white;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.file-label:hover .file-button {
+  background: $rosatom-dark;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 50, 116, 0.2);
+}
+
+.file-name {
+  color: $gray;
+  font-size: 14px;
+}
+
+.file-name.has-file {
+  color: $text-dark;
+  font-weight: 600;
+}
+
+.file-preview {
+  position: relative;
+  margin-top: 8px;
+  padding: 10px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.preview-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid $rosatom-dark;
+}
+
+.clear-btn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  background: $rosatom-dark;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+
+  img {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.clear-btn:hover {
+  background: $rosatom-blue;
+  box-shadow: 0 4px 8px rgba(0, 50, 116, 0.3);
+}
