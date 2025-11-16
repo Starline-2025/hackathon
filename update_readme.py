@@ -67,6 +67,7 @@ md = f"# 📘 API Documentation\n\n"
 md += f"**Title:** {info.get('title', 'N/A')}\n\n"
 md += f"**Version:** {info.get('version', 'N/A')}\n\n"
 md += f"**Description:** {info.get('description', '')}\n\n"
+md += f"**OpenApi File:** api/openapi.yaml\n\n"
 md += f"---\n\n"
 
 for path, methods in paths.items():
